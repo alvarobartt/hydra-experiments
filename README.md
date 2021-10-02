@@ -8,11 +8,11 @@
 
 ## :microscope: Experiments
 
-### :test_tube: Simple example - `simple_example`
+### :test_tube: Simple example - `simple-example`
 
 bla bla bla
 
-### :test_tube: Replace values from CLI - `values_from_cli`
+### :test_tube: Replace values from CLI - `values-from-cli`
 
 Configuration needs to be defined as it follows, with the `???` placeholder
 so as to specify the mandatory values that need to be introduced via CLI.
@@ -26,10 +26,10 @@ But even though, setting a default value instead of `???` will still let you
 modify it through the CLI.
 
 ```bash
-python values_from_cli/main.py train.batch_size=32
+python values-from-cli/main.py train.batch_size=32
 ```
 
-### :test_tube: Comparison versus `Typer` - `hydra_vs_typer`
+### :test_tube: Comparison versus `Typer` - `hydra-vs-typer`
 
 Basically this experiment will compare the default `hydra-core` application
 when it comes to loading the configuration, with `typer`'s way to do it. Since
@@ -40,7 +40,7 @@ This is a workaround to load the configuration from CLI, Path as a parameter,
 and replace those values in a dict.
 
 ```bash
-python hydra_vs_typer/main.py --config hydra_vs_typer/config/config.yaml
+python vs-typer/main.py --config vs-typer/config/config.yaml
 ```
 
 But the idea is that providing also the actual CLI parameters should override the
@@ -49,7 +49,7 @@ every parameter needs to be checked before actually replacing the one loaded fro
 the configuration.
 
 ```bash
-python hydra_vs_typer/main.py --config hydra_vs_typer/config/config.yaml --batch-size=32 
+python vs-typer/main.py --config vs-typer/config/config.yaml --batch-size=32 
 ```
 
 The main pros are that `typer` is easier to use and cleaner, but regarding the configuration
@@ -62,5 +62,5 @@ of a mirror script written in `hydra-core` and `typer`, respectively:
 
 ```
 time python simple_example/main.py
-time python hydra_vs_typer/main.py --config hydra_vs_typer/config/config.yaml
+time python vs-typer/main.py --config vs-typer/config/config.yaml
 ```
