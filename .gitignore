@@ -132,3 +132,8 @@ dmypy.json
 .vscode
 .vscode/
 .vscode/*
+
+# Hydra Output
+outputs
+outputs/
+outputs/*
