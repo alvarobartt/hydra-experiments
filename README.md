@@ -1,5 +1,7 @@
 # :octopus: Some Hydra experiments with `hydra-core`
 
+![](https://raw.githubusercontent.com/facebookresearch/hydra/master/website/static/img/Hydra-Readme-logo2.svg)
+
 ## :hammer_and_wrench: Installation
 
 `pip install hydra-core`
