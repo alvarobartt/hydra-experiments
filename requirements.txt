@@ -1,1 +1,3 @@
 hydra-core==1.1.1
+typer==0.4.0
+pyyaml==5.4.1
