@@ -1,0 +1,5 @@
+train:
+  batch_size: 16
+  do_train: True
+  eval_batch_size: 16
+  do_eval: True
