@@ -6,13 +6,13 @@
 
 `pip install hydra-core`
 
-## :test_tube: Experiments
+## :microscope: Experiments
 
-### Simple example - `simple_example/`
+### :test_tube: Simple example - `simple_example`
 
 bla bla bla
 
-### Replace values from CLI - `values_from_cli/`
+### :test_tube: Replace values from CLI - `values_from_cli`
 
 Configuration needs to be defined as it follows, with the `???` placeholder
 so as to specify the mandatory values that need to be introduced via CLI.
@@ -29,7 +29,7 @@ modify it through the CLI.
 python values_from_cli/main.py train.batch_size=32
 ```
 
-### Comparison versus `Typer` - `hydra_vs_typer/`
+### :test_tube: Comparison versus `Typer` - `hydra_vs_typer`
 
 Basically this experiment will compare the default `hydra-core` application
 when it comes to loading the configuration, with `typer`'s way to do it. Since
