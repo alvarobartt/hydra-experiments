@@ -10,7 +10,44 @@
 
 ### :test_tube: Simple example - `simple-example`
 
-bla bla bla
+Initial tests of `hydra-core` when it comes to configuration loading, as 
+specified in the Hydra Documentation at https://hydra.cc/docs/intro/.
+
+So on, the configuration has to be specified as a YAML file inside the
+`config/` directory in the same workspace, so that it will be loaded automatically
+using `hydra-core`. A default/basic configuration file could look like:
+
+```yaml
+train:
+  batch_size: 16
+  do_train: True
+  eval_batch_size: 16
+  do_eval: True
+```
+
+And, since it's a YAML you can define as much nested parameters as you wish,
+and `hydra-code` will load them by default using `omegaconf`, including the
+typing of those parameters. So that then the function that loads the config
+looks like:
+
+```python
+import hydra
+from omegaconf import DictConfig
+
+@hydra.main(config_path="config", config_name="config")
+def main(cfg: DictConfig):
+    print(cfg)
+
+if __name__ == "__main__":
+    main()
+```
+
+As you can see, you just need to define the `@hydra.main` decorator with the
+config path and file, so that the function with that decorator will automatically
+load it into the `omegaconf.DictConf` object.
+
+Also note that those parameters can either be accessed using as `cfg["param"]` or
+as `cfg.param`.
 
 ### :test_tube: Replace values from CLI - `values-from-cli`
 
@@ -29,7 +66,7 @@ modify it through the CLI.
 python values-from-cli/main.py train.batch_size=32
 ```
 
-### :test_tube: Comparison versus `Typer` - `hydra-vs-typer`
+### :test_tube: Comparison versus `Typer` - `vs-typer`
 
 Basically this experiment will compare the default `hydra-core` application
 when it comes to loading the configuration, with `typer`'s way to do it. Since
@@ -60,7 +97,11 @@ of `hydra-core` is intended to replace the usage of other CLI frameworks such as
 Additionally, you can use the following commands to compare the execution time
 of a mirror script written in `hydra-core` and `typer`, respectively:
 
-```
+```bash
 time python simple_example/main.py
 time python vs-typer/main.py --config vs-typer/config/config.yaml
 ```
+
+### :test_tube: Using a `dataclass` instead of `omegaconf.DictConfig` - `structured-config`
+
+bla bla bla
