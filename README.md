@@ -104,4 +104,42 @@ time python vs-typer/main.py --config vs-typer/config/config.yaml
 
 ### :test_tube: Using a `dataclass` instead of `omegaconf.DictConfig` - `structured-config`
 
-bla bla bla
+Additionally, instead of using the default `omegaconf.DictConfig` which loads by default the
+parameters from the YAML file (including types), we can just define our own `dataclass` with
+the expected fields in the YAML file.
+
+This is a nice feature, since `hydra-core`'s decorator will be the one fulfulling the attributes
+of that `dataclass` with the parameters retrived from the YAML, also checking that the input data
+matches the structure defined in the `dataclass`.
+
+So on, for the following configuration file in YAML:
+
+```yaml
+batch_size: 16
+do_train: True
+eval_batch_size: 16
+do_eval: True
+```
+
+we'll create a `dataclass` as it follows:
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class TrainConfig:
+    batch_size: int
+    do_train: bool
+    eval_batch_size: int
+    do_eval: bool
+```
+
+so that the `hydra-core` code will look like:
+
+```python
+import hydra
+
+@hydra.main(config_path="config", config_name="config")
+def main(cfg: TrainConfig):
+    ...
+```
