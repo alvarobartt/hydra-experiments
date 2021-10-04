@@ -70,8 +70,9 @@ python values-from-cli/main.py train.batch_size=32
 
 Basically this experiment will compare the default `hydra-core` application
 when it comes to loading the configuration, with `typer`'s way to do it. Since
-`typer` is one of the best CLI frameworks right now, whilst `hydra-core` is also
-a nice CLI framework but its main strengh is regarding the configuration loading.
+`typer` is one of the best CLI frameworks right now, whilst `hydra-core` is not
+a real CLI framework, but it can be used like that, as Hydra's main strenght is
+regarding the configuration.
 
 This is a workaround to load the configuration from CLI, Path as a parameter,
 and replace those values in a dict.
@@ -86,13 +87,15 @@ every parameter needs to be checked before actually replacing the one loaded fro
 the configuration.
 
 ```bash
-python vs-typer/main.py --config vs-typer/config/config.yaml --batch-size=32 
+python vs-typer/main.py --config vs-typer/config/config.yaml --batch-size=32
 ```
 
-The main pros are that `typer` is easier to use and cleaner, but regarding the configuration
-loading from the CLI, `hydra-core` seems to be more robust. Also to mention that the usage
-of `hydra-core` is intended to replace the usage of other CLI frameworks such as `Click`,
-`typer`, `argparse`, etc.
+The main pros are that `typer` is easier to use and cleaner, and also is a real CLI
+framework, so at the end is more consistent for building actual CLIs. Whilst regarding
+the configuration loading , `hydra-core` is obviously more robust. Also to mention that the usage
+of `hydra-core` is NOT intended to replace the usage of other CLI frameworks such as `Click`,
+`typer`, `argparse`, etc. unless you don't want to create a real CLI but a e.g. training script
+for your ML models.
 
 Additionally, you can use the following commands to compare the execution time
 of a mirror script written in `hydra-core` and `typer`, respectively:
@@ -101,6 +104,10 @@ of a mirror script written in `hydra-core` and `typer`, respectively:
 time python simple_example/main.py
 time python vs-typer/main.py --config vs-typer/config/config.yaml
 ```
+
+Finally, when it comes to wrapping everything around a Python package so that the functions can be used
+either through the CLI or as package functions through Python, `Typer` is the recommended approach, as
+`hydra-core` is not intended to be used like that.
 
 ### :test_tube: Using a `dataclass` instead of `omegaconf.DictConfig` - `structured-config`
 
