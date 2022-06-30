@@ -26,7 +26,7 @@ train:
 ```
 
 And, since it's a YAML you can define as much nested parameters as you wish,
-and `hydra-code` will load them by default using `omegaconf`, including the
+and `hydra-core` will load them by default using `omegaconf`, including the
 typing of those parameters. So that then the function that loads the config
 looks like:
 
